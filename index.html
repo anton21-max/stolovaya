@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Столовая | Учебная столовая</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap&subset=cyrillic" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍽️</text></svg>">
+    <style>
+        /* ===== ОСНОВНЫЕ СТИЛИ ===== */
+        :root {
+            --orange: #FF8C42;
+            --orange-dark: #E67E22;
+            --white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --gray: #6C757D;
+            --dark: #343A40;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: var(--dark);
+            line-height: 1.5;
+            background-color: var(--white);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 50px 0;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        h1 { font-size: 2.2rem; }
+        h2 { font-size: 1.8rem; }
+
+        /* ===== ШАПКА ===== */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--orange);
+        }
+
+        /* ===== ГЛАВНЫЙ БАННЕР ===== */
+        .hero {
+            background: linear-gradient(135deg, #FFF8F3 0%, #FFE8D9 100%);
+            text-align: center;
+            padding: 80px 0;
+        }
+
+        .hero h1 {
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ===== РАЗДЕЛ МЕНЮ ===== */
+        .menu-section {
+            background-color: var(--white);
+        }
+
+        .menu-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .menu-header h2 {
+            color: var(--dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .menu-header h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--orange);
+        }
+
+        /* Сетка блюд */
+        .dishes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .dish-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--orange);
+        }
+
+        .dish-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .dish-title {
+            color: var(--dark);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .dish-price {
+            color: var(--orange);
+            font-size: 1.2rem;
+            font-weight: 700;
+            white-space: nowrap;
+            margin-left: 15px;
+        }
+
+        /* ===== КОНТАКТЫ ===== */
+        .contacts-section {
+            background-color: var(--light-gray);
+        }
+
+        .contacts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-info h3 {
+            color: var(--dark);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            color: var(--orange);
+            margin-right: 15px;
+            font-size: 1.1rem;
+            min-width: 20px;
+        }
+
+        .contact-text h4 {
+            font-size: 1rem;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .contact-text p {
+            color: var(--gray);
+        }
+
+        .hours-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .hours-table td {
+            padding: 10px 0;
+            color: var(--gray);
+        }
+
+        .hours-table td:first-child {
+            font-weight: 500;
+            color: var(--dark);
+            width: 60%;
+        }
+
+        /* ===== ПОДВАЛ ===== */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--orange);
+            margin-bottom: 15px;
+            text-decoration: none;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        /* ===== АДАПТИВНОСТЬ ===== */
+        @media (max-width: 768px) {
+            h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.5rem; }
+            
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .dishes-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+            
+            .contacts-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+            
+            .header-container {
+                padding: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ШАПКА -->
+    <header>
+        <div class="container header-container">
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#menu">Меню</a></li>
+                    <li><a href="#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ГЛАВНЫЙ БАННЕР -->
+    <section class="hero">
+        <div class="container">
+            <h1>Столовая</h1>
+            <p>Вкусно, недорого, быстро</p>
+        </div>
+    </section>
+
+    <!-- МЕНЮ -->
+    <section class="menu-section" id="menu">
+        <div class="container">
+            <div class="menu-header">
+                <h2>Меню</h2>
+            </div>
+            
+            <!-- Сетка блюд -->
+            <div class="dishes-grid">
+                <!-- Гарниры -->
+                <div class="dish-card">
+                    <div class="dish-header">
+                        <h3 class="dish-title">Гречка</h3>
+                        <div class="dish-price">60 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-header">
+                        <h3 class="dish-title">Рис</h3>
+                        <div class="dish-price">60 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-header">
+                        <h3 class="dish-title">Пюре картофельное</h3>
+                        <div class="dish-price">60 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-header">
+                        <h3 class="dish-title">Макароны</h3>
+                        <div class="dish-price">100 ₽</div>
+                    </div>
+                </div>
+                
+                <!-- Горячие блюда -->
+                <div class="dish-card">
+                    <div class="dish-header">
+                        <h3 class="dish-title">Гречка с фрикадельками</h3>
+                        <div class="dish-price">100 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-header">
+                        <h3 class="dish-title">Плов</h3>
+                        <div class="dish-price">100 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-header">
+                        <h3 class="dish-title">Тефтели в соусе</h3>
+                        <div class="dish-price">80 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-header">
+                        <h3 class="dish-title">Котлета с сыром</h3>
+                        <div class="dish-price">100 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-header">
+                        <h3 class="dish-title">Куриные котлеты</h3>
+                        <div class="dish-price">100 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-header">
+                        <h3 class="dish-title">Шницель</h3>
+                        <div class="dish-price">100 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-header">
+                        <h3 class="dish-title">Жареные тефтели</h3>
+                        <div class="dish-price">90 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="dish-card">
+                    <div class="dish-header">
+                        <h3 class="dish-title">Рыбные котлеты</h3>
+                        <div class="dish-price">100 ₽</div>
+                    </div>
+                </div>
+                
+                <!-- Напитки -->
+                <div class="dish-card">
+                    <div class="dish-header">
+                        <h3 class="dish-title">Компот</h3>
+                        <div class="dish-price">80 ₽</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section class="contacts-section" id="contacts">
+        <div class="container">
+            <div class="menu-header">
+                <h2>Контакты</h2>
+            </div>
+            
+            <div class="contacts-container">
+                <div class="contact-info">
+                    <h3>Адрес</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">
+                            <p>Еврейская автономная область, г. Биробиджан, ул. Широкая, д. 70а</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    <h3>Время работы</h3>
+                    <table class="hours-table">
+                        <tr>
+                            <td>Понедельник - Пятница</td>
+                            <td>9:00 - 18:00</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ПОДВАЛ -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-logo">Столовая</div>
+            <p class="copyright">© 2023 Столовая. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ПЛАВНАЯ ПРОКРУТКА ПРИ КЛИКЕ НА ССЫЛКИ В МЕНЮ
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
